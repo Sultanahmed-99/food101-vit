@@ -4,11 +4,7 @@ from torch import nn
 import os 
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
-load_dotenv()
-
-# Fetch the token from environment variable
-access_token = os.environ.get('HF_TOKEN')
+ 
 
 
 def create_image_classification_model(num_classes: int = 3, seed: int = 42):
@@ -23,8 +19,8 @@ def create_image_classification_model(num_classes: int = 3, seed: int = 42):
         processor (transformers.AutoImageProcessor): Image processor.
     """
     # Load the fine-tuned model and processor
-    model_name = "ateraw/food"
-    processor = AutoImageProcessor.from_pretrained(model_name , auth_token=access_token)
+    model_name = "aspis/swin-finetuned-food101"
+    processor = AutoImageProcessor.from_pretrained(model_name)
     model = AutoModelForImageClassification.from_pretrained(model_name) 
 
     # Freeze all layers in the base model
